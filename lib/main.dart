@@ -3,8 +3,11 @@ import 'package:yeah/authentication/landing.dart';
 import 'package:yeah/authentication/login.dart';
 import 'package:yeah/authentication/register.dart';
 import 'package:sizer/sizer.dart';
+import 'package:firebase_core/firebase_core.dart';
 
-void main() {
+void main() async{
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(MyApp());
 }
 
