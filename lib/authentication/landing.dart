@@ -32,7 +32,7 @@ class _LandingScreenState extends State<LandingScreen> {
       child: Center(
         child: Container(
           height: 550.0,
-          width: 250.0,
+          width: 270.0,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(30.0),
             //color: Color.fromRGBO(255, 255, 2555, 0.5),
@@ -45,56 +45,58 @@ class _LandingScreenState extends State<LandingScreen> {
            Container(
            width: 25.0,
            height: 25.0,
-           
-         ),
+           ),
           SizedBox(
             height: 5.0,
           ),
-             Padding(padding: EdgeInsets.symmetric(vertical: 16.0),
-            child: Material(
-            elevation: 1.0,
-            color: Colors.white,
-              borderRadius: BorderRadius.circular(30.0),
-
-            child: MaterialButton(
-              onPressed: () {
-                Navigator.pushNamed(context, LoginScreen.id);
-              },
-              minWidth: 88.0,
-              height: 42.0,
-
-              child: Text(
-                  'LOG IN',
-                      style: TextStyle(color: Colors.pink),
+            Container(
+              margin: const EdgeInsets.fromLTRB(30, 10, 30, 30),
+              child: MaterialButton(
+                height: 50.0,
+                minWidth: 0,
+                padding: EdgeInsets.all(1.0),
+                color: Colors.white,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(30.0),
+                      side: BorderSide(color: Color(0xFFEA02B1),)
+                ),
+                textColor: Color(0xFFEA02B1),
+                child: Text("LOGIN",
+                style: TextStyle(
+                  fontSize: 17,
+                ),
+                ),
+                onPressed: () {
+                  Navigator.pushNamed(context, LoginScreen.id);
+                },
               ),
             ),
-            ),
-
-             ),
-             Padding(
-               padding: EdgeInsets.symmetric(vertical: 16.0),
-               child: Material(
-                 elevation: 5.0,
+             Container(
+               margin: const EdgeInsets.fromLTRB(30, 10, 30, 30),
+               child: MaterialButton(
+                 height: 50.0,
+                 minWidth: 0,
+                 padding: EdgeInsets.all(1.0),
                  color: Colors.white,
-                 borderRadius: BorderRadius.circular(30.0),
-                 child: MaterialButton(
-                   onPressed: () {
-                     Navigator.pushNamed(context, RegisterScreen.id);
-                   },
-                   minWidth: 50.0,
-                   height: 42.0,
-                   child: Text(
-                     'REGISTER',
-                     style: TextStyle(color: Colors.pink),
+                 shape: RoundedRectangleBorder(
+                     borderRadius: BorderRadius.circular(30.0),
+                     side: BorderSide(color: Color(0xFFEA02B1),)
+                 ),
+                 textColor: Color(0xFFEA02B1),
+                 child:  Text("REGISTER",
+                   style: TextStyle(
+                     fontSize: 17,
                    ),
                  ),
+                 onPressed: () {
+                   Navigator.pushNamed(context, RegisterScreen.id);
+                 },
                ),
              ),
-          ],
+           ],
         ),
         ),
       ),
     );
-
   }
 }
