@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:form_field_validator/form_field_validator.dart';
 import 'package:yeah/Theme/constants.dart';
 import 'package:sizer/sizer.dart';
 import 'package:yeah/authentication/register.dart';
@@ -16,14 +15,10 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen> {
 
-
   final _formKey = GlobalKey<FormState>();
   TextEditingController _email = TextEditingController();
   TextEditingController _password = TextEditingController();
   bool _passwordVisible = false;
-
-
-
 
   @override
   void initState() {
@@ -85,7 +80,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       onTap: (){
                         Navigator.popAndPushNamed(context, RegisterScreen.id);
                       },
-                        child: H4Heading(text: "Don't have an account? Register",)),
+                        child: H4Heading(text: "Don't have an account? Register",),),
                   ],
                 ),
               ),
