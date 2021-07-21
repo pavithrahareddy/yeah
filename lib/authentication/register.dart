@@ -59,25 +59,25 @@ class _RegisterScreenState extends State<RegisterScreen> {
         alignment: Alignment.center,
         children: [
           backgroundTheme,
-          SingleChildScrollView(
-            child: Padding(
-              padding: EdgeInsets.only(top: 2.h),
-              child: Container(
-                height: 90.h,
-                width: 80.w,
-                padding: EdgeInsets.all(5.w),
-                decoration: BoxDecoration(
-                    color: Colors.white.withOpacity(0.3),
-                    borderRadius: BorderRadius.all(Radius.circular(30))),
-                child: Form(
-                  key: _formKey,
+          Padding(
+            padding: EdgeInsets.only(top: 2.h),
+            child: Container(
+              height: 85.h,
+              width: 80.w,
+              padding: EdgeInsets.only(top: 10.w,right: 5.w,left: 5.w,bottom: 5.w),
+              decoration: BoxDecoration(
+                  color: Colors.white.withOpacity(0.3),
+                  borderRadius: BorderRadius.all(Radius.circular(30))),
+              child: Form(
+                key: _formKey,
+                child: SingleChildScrollView(
                   child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
                       Logo(),
                       SizedBox(
-                        height: 5.h,
+                        height: 3.h,
                       ),
                       H4Heading(text: "Enter Details To Sign Up"),
                       SizedBox(
