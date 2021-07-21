@@ -93,8 +93,10 @@ class _LoginScreenState extends State<LoginScreen> {
                         height: 1.5.h,
                       ),
                       GestureDetector(
-                          onTap:(){
-                            resetPassword(_email.text);
+                          onTap:() async {
+                            loadingState();
+                            await resetPassword(_email.text);
+                            loadingState();
                             ScaffoldMessenger.of(context).showSnackBar(
                               SnackBar(
                                 content: Text(
