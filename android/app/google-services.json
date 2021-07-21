@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "366980371646",
+    "project_id": "morsechat-95a9d",
+    "storage_bucket": "morsechat-95a9d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:366980371646:android:3f32897635f7f3cec97aef",
+        "android_client_info": {
+          "package_name": "com.example.yeah"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "366980371646-jius1ruue12v7gc2t30ob7414vjmopre.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAD58lZzjE9YUXrVD-GRyBLwB3lSTyopqI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "366980371646-jius1ruue12v7gc2t30ob7414vjmopre.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
