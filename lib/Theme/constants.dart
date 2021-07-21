@@ -20,15 +20,13 @@ final backgroundTheme = Container(
 
 
 const buttonGradient = LinearGradient(
-  begin: Alignment.topCenter,
-  end: Alignment.bottomCenter,
+  begin: Alignment.topLeft,
+  end: Alignment.bottomRight,
   colors: [
-    Color(0xFF380CEA),
-    Color(0xFF664AE2),
-    Color(0xFFE300FF),
-    Color(0xFFEC0DCE),
+    Color(0xFF2687EE),
+    Color(0xFF237CDB),
+    Color(0xFF2283CE),
   ],
-  stops: [0.1,0.4, 0.7, 0.9],
 );
 
 const textInputDecoration = InputDecoration(

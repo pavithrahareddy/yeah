@@ -2,11 +2,20 @@ import 'package:flutter/material.dart';
 import 'package:form_field_validator/form_field_validator.dart';
 import 'package:yeah/Theme/constants.dart';
 
-final requiredValidator =MultiValidator([RequiredValidator(errorText: '            Name is required'),]);
+final requiredValidator =MultiValidator([RequiredValidator(errorText: '             Field is required'),]);
 
 final emailValidator = MultiValidator([
-  RequiredValidator(errorText: '            Email is required'),
+  RequiredValidator(errorText: '            Field is required'),
   EmailValidator(errorText: '            Enter a valid email address')
+]);
+
+final passwordValidator = MultiValidator([
+  RequiredValidator(errorText: '            Field is required'),
+  MinLengthValidator(8,
+      errorText: '            Password must be at least 8 digits long'),
+  PatternValidator(r'(?=.*?[#?!@$%^&*-])',
+      errorText:
+      '            Password must have at least one special character')
 ]);
 
 class InputDetails extends StatelessWidget {
@@ -48,6 +57,46 @@ class InputDetails extends StatelessWidget {
       ),
     );
   }
+}
+
+Widget password(TextEditingController password,bool _passwordVisible,Function passwordVisibility, bool type){
+
+  return Container(
+    padding: EdgeInsets.all(5),
+    decoration: inputBoxDecoration,
+    child: TextFormField(
+      autovalidateMode: AutovalidateMode.onUserInteraction,
+      onFieldSubmitted: (value) {},
+      style: TextStyle(
+        color: Color(
+            0xFFE50277), //TextFormField title background color change
+      ),
+      obscureText: !_passwordVisible,
+      decoration: textInputDecoration.copyWith(
+        hintText: "Enter Your Password",
+        prefixIcon: Icon(
+          Icons.lock,
+          color: Color(0xFFE50277),
+        ),
+        suffixIcon: GestureDetector(
+          onLongPress: () {
+            passwordVisibility();
+          },
+          onLongPressUp: () {
+            passwordVisibility();
+          },
+          child: Icon(
+            _passwordVisible
+                ? Icons.visibility
+                : Icons.visibility_off,
+            color: Color(0xFFE50277),
+          ),
+        ),
+      ),
+      controller: password,
+      validator: type ? passwordValidator : requiredValidator,
+    ),
+  );
 }
 
 

@@ -62,3 +62,24 @@ class H4Heading extends StatelessWidget {
     );
   }
 }
+
+class H5Heading extends StatelessWidget {
+  const H5Heading({
+    required this.text,
+    Key? key,
+  }) : super(key: key);
+
+  final String text;
+
+  @override
+  Widget build(BuildContext context) {
+    return Text(
+      text,
+      textAlign: TextAlign.center,
+      style: GoogleFonts.overlock(
+          fontSize: 12.sp,
+          color: Colors.white,
+          fontWeight: FontWeight.w600),
+    );
+  }
+}

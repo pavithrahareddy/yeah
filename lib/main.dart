@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
         builder: (context, orientation, deviceType){
           return MaterialApp(
             debugShowCheckedModeBanner: false,
-            initialRoute: LandScreen.id,
+            initialRoute: LoginScreen.id,
             theme: ThemeData(
               primaryColor: Color(0xFFEC0DCE),
             ),

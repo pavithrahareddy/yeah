@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:sizer/sizer.dart';
+import 'package:yeah/Theme/constants.dart';
+import 'package:yeah/widgets/text_widgets.dart';
 
 
 class CustomButton extends StatelessWidget {
@@ -44,6 +46,32 @@ class CustomButton extends StatelessWidget {
               fontWeight: FontWeight.w600),
           ),
         )
+    );
+  }
+}
+
+
+class GradientButton extends StatelessWidget {
+  String text;
+  GradientButton({required this.text});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      alignment:
+      Alignment.center,
+      height: 7.h,
+      width: 40.w,
+      decoration:
+      BoxDecoration(
+        gradient: buttonGradient,
+        borderRadius:
+        BorderRadius
+            .circular(30),
+      ),
+      child:
+        H3Heading(text: "Log In",),
+
     );
   }
 }
