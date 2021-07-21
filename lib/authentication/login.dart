@@ -5,6 +5,8 @@ import 'package:yeah/authentication/register.dart';
 import 'package:yeah/widgets/button_widgets.dart';
 import 'package:yeah/widgets/input_widgets.dart';
 import 'package:yeah/widgets/text_widgets.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:yeah/authentication/error_codes.dart';
 
 class LoginScreen extends StatefulWidget {
   static const String id = 'login_screen';
@@ -20,11 +22,21 @@ class _LoginScreenState extends State<LoginScreen> {
   TextEditingController _password = TextEditingController();
   bool _passwordVisible = false;
 
+  final _auth = FirebaseAuth.instance;
+  String error = "";
+
+
   @override
   void initState() {
-    _passwordVisible = false;
     super.initState();
+    _passwordVisible = false;
   }
+
+  @override
+  Future<void> resetPassword(String email) async {
+    await _auth.sendPasswordResetEmail(email: email);
+  }
+
 
   void passwordVisibility() {
     setState(() {
@@ -68,11 +80,33 @@ class _LoginScreenState extends State<LoginScreen> {
                     SizedBox(
                       height: 1.5.h,
                     ),
-                    H5Heading(text: "Forgot Password?",),
+                    GestureDetector(
+                        onTap:(){
+                          resetPassword(_email.text);
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(
+                              content: Text(
+                                'Password reset link sent to mail',
+                              ),
+                            ),
+                          );
+                        },child: H5Heading(text: "Forgot Password?",)),
                     SizedBox(
                       height: 3.h,
                     ),
-                    GradientButton(text: "Login"),
+                    GestureDetector(
+                      onTap: () async {
+                        try {
+                          final user = await _auth.signInWithEmailAndPassword(
+                              email: _email.text, password: _password.text);
+                          if (user != null) {
+                            // Navigator.pushNamed(context, ChatScreen.id);
+                          }
+                        } on FirebaseAuthException catch (e) {
+                          error = getMessageFromErrorCode(e.code.toString());
+                        }
+                      },
+                        child: GradientButton(text: "Login")),
                     SizedBox(
                       height: 7.h,
                     ),

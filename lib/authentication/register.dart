@@ -114,42 +114,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         SizedBox(
                           height: 3.h,
                         ),
-                        Container(
-                          padding: EdgeInsets.all(5),
-                          decoration: inputBoxDecoration,
-                          child: TextFormField(
-                            autovalidateMode: AutovalidateMode.onUserInteraction,
-                            onFieldSubmitted: (value) {},
-                            style: TextStyle(
-                              color: Color(
-                                  0xFFE50277), //TextFormField title background color change
-                            ),
-                            obscureText: !_passwordVisible,
-                            decoration: textInputDecoration.copyWith(
-                              hintText: "Enter Your Password",
-                              prefixIcon: Icon(
-                                Icons.lock,
-                                color: Color(0xFFE50277),
-                              ),
-                              suffixIcon: GestureDetector(
-                                onLongPress: () {
-                                  passwordVisibility();
-                                },
-                                onLongPressUp: () {
-                                  passwordVisibility();
-                                },
-                                child: Icon(
-                                  _passwordVisible
-                                      ? Icons.visibility
-                                      : Icons.visibility_off,
-                                  color: Color(0xFFE50277),
-                                ),
-                              ),
-                            ),
-                            controller: _password,
-                            validator: passwordValidator,
-                          ),
-                        ),
+                        password(_password, _passwordVisible, passwordVisibility, true),
                         SizedBox(
                           height: 3.h,
                         ),
