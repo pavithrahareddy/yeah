@@ -36,22 +36,12 @@ class _ScanScreenState extends State<ScanScreen> {
           SizedBox(
             height: 5.h,
           ),
-          ConstrainedBox(
-            constraints: BoxConstraints.tightFor(width: 40.w, height: 7.h),
-            child: ElevatedButton(onPressed: (){
-            }, child: Text("Tap to Scan!",style: TextStyle(fontSize: 14.sp,color: Color(0xFFEC0DCE))),
-            style: ButtonStyle(
-                backgroundColor: MaterialStateProperty.all<Color>(Colors.white),
-                shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                    RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(30.0),
-                    )
-                )
-            ),),
-          )
+          Custom2Button(text: "Tap to Scan!",)
         ],
       )
 
     );
   }
 }
+
+

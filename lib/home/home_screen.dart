@@ -1,11 +1,9 @@
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:yeah/Theme/constants.dart';
 import 'package:yeah/scanner/scan_screen.dart';
+import 'package:yeah/widgets/layout_widgets.dart';
 import 'package:yeah/widgets/text_widgets.dart';
 import 'package:sizer/sizer.dart';
 
@@ -38,17 +36,7 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(8.h),
-        child: AppBar(
-          elevation: 5,
-          centerTitle: true,
-          title: Padding(
-              padding:EdgeInsets.only(top: 1.5.h),child: SmallLogo()),
-          flexibleSpace: Container(
-            decoration: BoxDecoration(
-              gradient: appBarGradient,
-            ),
-          ),
-        ),
+        child: morsoBar(),
       ),
       body: Center(
         child: _widgetOptions.elementAt(_selectedIndex),
@@ -103,3 +91,5 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 }
+
+
