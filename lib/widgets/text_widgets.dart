@@ -21,6 +21,25 @@ class Logo extends StatelessWidget {
   }
 }
 
+class SmallLogo extends StatelessWidget {
+  const SmallLogo({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Text(
+      "Morsogram",
+      textAlign: TextAlign.center,
+      style: GoogleFonts.bilbo(
+        fontSize: 30.sp,
+        color: Colors.white,
+        fontWeight: FontWeight.w900,
+      ),
+    );
+  }
+}
+
 class H3Heading extends StatelessWidget {
   const H3Heading({
     Key? key,

@@ -4,6 +4,8 @@ import 'package:yeah/authentication/login.dart';
 import 'package:yeah/authentication/register.dart';
 import 'package:sizer/sizer.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:yeah/home/home_screen.dart';
+import 'package:yeah/scanner/scan_screen.dart';
 
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
@@ -18,7 +20,7 @@ class MyApp extends StatelessWidget {
         builder: (context, orientation, deviceType){
           return MaterialApp(
             debugShowCheckedModeBanner: false,
-            initialRoute: LandScreen.id,
+            initialRoute: HomeScreen.id,
             theme: ThemeData(
               primaryColor: Color(0xFFEC0DCE),
             ),
@@ -26,6 +28,8 @@ class MyApp extends StatelessWidget {
               LoginScreen.id: (context) => LoginScreen(),
               RegisterScreen.id: (context) => RegisterScreen(),
               LandScreen.id: (context) => LandScreen(),
+              HomeScreen.id: (context) => HomeScreen(),
+              ScanScreen.id: (context) => ScanScreen(),
             },
           );
         }

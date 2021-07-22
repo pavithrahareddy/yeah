@@ -18,6 +18,27 @@ final backgroundTheme = Container(
   ),
 );
 
+final lightBackgroundTheme = LinearGradient(
+  begin: Alignment.topLeft,
+  end: Alignment.bottomRight,
+  colors: [
+    Color(0xFF380CEA).withOpacity(0.5),
+    Color(0xFF462EB3).withOpacity(0.5),
+    Color(0xFFE300FF).withOpacity(0.5),
+    Color(0xFFEC0DCE).withOpacity(0.5),
+  ],
+  stops: [0.2,0.4, 0.6, 0.9],
+);
+
+const appBarGradient = LinearGradient(
+  begin: Alignment.topLeft,
+  end: Alignment.bottomRight,
+  colors: [
+    Color(0xFF1B52AF),
+    Color(0xFFD70988),
+  ],
+);
+
 
 const buttonGradient = LinearGradient(
   begin: Alignment.topLeft,

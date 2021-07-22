@@ -32,7 +32,7 @@ class _LoginScreenState extends State<LoginScreen> {
   void initState() {
     super.initState();
     _passwordVisible = false;
-    bool loading = false;
+    loading = false;
   }
 
   @override
