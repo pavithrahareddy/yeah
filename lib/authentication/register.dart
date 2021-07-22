@@ -65,7 +65,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
     return ModalProgressHUD(
       inAsyncCall: loading,
       opacity: 0.5,
-      progressIndicator: CircularProgressIndicator(color:Color (0xFF4C2AE3),),
+      progressIndicator: CircularProgressIndicator(color: Color(0xFF4C2AE3),),
       child: Scaffold(
         body: Stack(
           alignment: Alignment.center,

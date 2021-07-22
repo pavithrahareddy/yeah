@@ -57,7 +57,7 @@ class _LoginScreenState extends State<LoginScreen> {
     return ModalProgressHUD(
       inAsyncCall: loading,
       opacity: 0.5,
-      progressIndicator: CircularProgressIndicator(color:Color (0xFF4C2AE3),),
+      progressIndicator: CircularProgressIndicator(color:Color(0xFF4C2AE3),),
       child: Scaffold(
         resizeToAvoidBottomInset: false,
         body: Stack(
