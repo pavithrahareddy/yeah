@@ -3,6 +3,7 @@ import 'package:flutter_morse_util/morse_util.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:yeah/Theme/constants.dart';
 import 'package:sizer/sizer.dart';
+import 'package:yeah/widgets/text_widgets.dart';
 
 class LearnScreen extends StatefulWidget {
   static const String id = 'learn_screen';
@@ -21,38 +22,8 @@ class _LearnScreenState extends State<LearnScreen> {
     return Container(
       padding: EdgeInsets.all(1.w),
       decoration: BoxDecoration(gradient: lightBackgroundTheme),
-      child: GridView.count(
-        mainAxisSpacing: 10.0,
-        crossAxisSpacing: 10.0,
-        crossAxisCount: 3 ,
-        children:  List.generate(36,(index){
-          return Card(
-            elevation: 10,
-            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(45)),
-            color: Colors.white,
-            child: Container(
-              padding: EdgeInsets.all(2.w),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(items[index],style: GoogleFonts.overlock(
-
-                    fontSize: 25.sp,
-                    color: Color(0xFFD70988),
-                    fontWeight: FontWeight.w600,
-                  ),),
-                  Text(_morseUtil.encode(items[index]),textAlign:TextAlign.center,style: GoogleFonts.overlock(
-                    fontSize: 35.sp,
-                    color: Color(0xFF0C5DD7),
-                    fontWeight: FontWeight.bold,
-                  ),),
-                ],
-              ),
-            )
-          );
-        }),
-        ),
+      child: Aphabets(items: items, morseUtil: _morseUtil),
       );
   }
 }
+

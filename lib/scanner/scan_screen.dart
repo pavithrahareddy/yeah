@@ -94,6 +94,12 @@ class _ScanScreenState extends State<ScanScreen> {
                 padding: EdgeInsets.all(8.w),
                 decoration: inputBoxDecoration,
                 child: TextField(
+                  style: GoogleFonts.overlock(
+                    fontSize: 20.sp,
+                    color: Color(0xFF0C5DD7),
+                    fontWeight: FontWeight.bold,
+                  ),
+                  textCapitalization: TextCapitalization.characters,
                   minLines: 100,
                   controller: inputController,
                   maxLines: null,
