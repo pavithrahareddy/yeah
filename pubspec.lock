@@ -174,20 +174,20 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
-  flutter_mobile_vision:
+  flutter_mobile_vision_2:
     dependency: "direct main"
     description:
-      name: flutter_mobile_vision
+      name: flutter_mobile_vision_2
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.1.4+1"
+    version: "0.1.11"
   flutter_morse_util:
     dependency: "direct main"
     description:
       path: "."
       ref: master
       resolved-ref: "2f557293f0da733347249cba7da514a99938fc2a"
-      url: "https://github.com/ighorpm/flutter_morse_util"
+      url: "https://github.com/pavithrahareddy/flutter_morse_util"
     source: git
     version: "0.0.2"
   flutter_test:

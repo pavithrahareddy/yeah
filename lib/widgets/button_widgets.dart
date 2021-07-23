@@ -96,7 +96,7 @@ class GradientButton extends StatelessWidget {
             .circular(30),
       ),
       child:
-        H3Heading(text: "Log In",),
+        H3Heading(text: text,),
 
     );
   }
