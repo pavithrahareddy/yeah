@@ -91,13 +91,12 @@ class _ScanScreenState extends State<ScanScreen> {
               Container(
                 width: 80.w,
                 height: 40.h,
-                padding: EdgeInsets.all(10.w),
+                padding: EdgeInsets.all(8.w),
                 decoration: inputBoxDecoration,
                 child: TextField(
                   minLines: 100,
                   controller: inputController,
                   maxLines: null,
-                  textInputAction: TextInputAction.done,
                   decoration: InputDecoration(
                       border: InputBorder.none,
                        hintText: 'Type your text here'),
