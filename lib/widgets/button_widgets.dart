@@ -101,3 +101,72 @@ class GradientButton extends StatelessWidget {
     );
   }
 }
+
+
+class ButtonText extends StatelessWidget {
+  const ButtonText({
+    Key? key,
+    required this.iconText,
+    required this.text,
+  }) : super(key: key);
+
+  final String iconText;
+  final String text;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Container(
+            padding: EdgeInsets.all(10),
+            alignment: Alignment.center,
+            height: 10.h,
+            width: 20.w,
+            decoration: BoxDecoration(
+                gradient: appBarGradient,
+                borderRadius: BorderRadius.circular(30)),
+            child: Text(
+              iconText,style: GoogleFonts.overlock(
+              fontSize: 20.sp,
+              color: Colors.white,
+              fontWeight: FontWeight.w600,
+            ),
+            )
+        ),
+        H4Heading(text: text),
+      ],
+    );
+  }
+}
+
+class ButtonIcon extends StatelessWidget {
+  const ButtonIcon({
+    Key? key,
+    required this.icon,
+    required this.text,
+  }) : super(key: key);
+
+  final String text;
+  final IconData icon;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Container(
+          height: 10.h,
+          width: 20.w,
+          decoration: BoxDecoration(
+              gradient: appBarGradient,
+              borderRadius: BorderRadius.circular(30)),
+          child: Icon(
+            icon,
+            size: 5.h,
+            color: Colors.white,
+          ),
+        ),
+        H4Heading(text: text),
+      ],
+    );
+  }
+}

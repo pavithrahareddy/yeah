@@ -19,15 +19,12 @@ final backgroundTheme = Container(
 );
 
 final lightBackgroundTheme = LinearGradient(
-  begin: Alignment.topLeft,
-  end: Alignment.bottomRight,
+  begin: Alignment.topCenter,
+  end: Alignment.bottomCenter,
   colors: [
-    Color(0xFF380CEA).withOpacity(0.5),
-    Color(0xFF462EB3).withOpacity(0.5),
-    Color(0xFFE300FF).withOpacity(0.5),
-    Color(0xFFEC0DCE).withOpacity(0.5),
+    Color(0xFF0C5DD7).withOpacity(0.8),
+    Color(0xFFEC0DCE).withOpacity(0.8),
   ],
-  stops: [0.2,0.4, 0.6, 0.9],
 );
 
 const appBarGradient = LinearGradient(

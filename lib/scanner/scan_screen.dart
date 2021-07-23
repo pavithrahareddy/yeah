@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_morse_util/morse_util.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:url_launcher/url_launcher.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:sizer/sizer.dart';
 import 'package:yeah/Theme/constants.dart';
 import 'package:yeah/widgets/button_widgets.dart';
 import 'package:flutter_mobile_vision_2/flutter_mobile_vision_2.dart';
+import 'package:yeah/widgets/text_widgets.dart';
 
 class ScanScreen extends StatefulWidget {
   static const String id = 'scan_screen';
@@ -52,43 +53,45 @@ class _ScanScreenState extends State<ScanScreen> {
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              GestureDetector(
-                onTap: () {
-                  print(inputController.text);
-                },
-                child: Container(
-                  height: 25.h,
-                  width: 50.w,
-                  decoration: BoxDecoration(
-                      gradient: appBarGradient,
-                      borderRadius: BorderRadius.circular(50)),
-                  child: Icon(
-                    Icons.qr_code_scanner_sharp,
-                    size: 20.h,
-                    color: Colors.white,
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  GestureDetector(
+                    onTap: () async {
+                      print("pressed");
+                      await _read();
+                      print(inputController.text);
+                    },
+                    child: ButtonIcon(icon: Icons.qr_code_scanner_sharp,text: "Scan",),
                   ),
-                ),
-              ),
-              SizedBox(
-                height: 5.h,
-              ),
-              GestureDetector(
-                onTap: () async {
-                  print("pressed");
-                  await _read();
-                  print(inputController.text);
-                },
-                child: GradientButton(
-                  text: "yahoo",
-                ),
+                  SizedBox(
+                    width: 5.w,
+                  ),
+                  GestureDetector(
+                    onTap: () async {
+                      morseEncode();
+                    },
+                      child: ButtonText(iconText: "-/.-./-",text: "Encode",)
+                  ),
+                  SizedBox(
+                    width: 5.w,
+                  ),
+                  GestureDetector(
+                    onTap: () async {
+                      morseDecode();
+                    },
+                    child: ButtonText(iconText: "AaBb",text: "Decode",)
+                  ),
+                ],
               ),
               SizedBox(
                 height: 5.h,
               ),
               Container(
                 width: 80.w,
-                height: 20.h,
-                padding: EdgeInsets.all(5.w),
+                height: 40.h,
+                padding: EdgeInsets.all(10.w),
                 decoration: inputBoxDecoration,
                 child: TextField(
                   minLines: 100,
@@ -100,142 +103,12 @@ class _ScanScreenState extends State<ScanScreen> {
                        hintText: 'Type your text here'),
                 ),
               ),
-              Row(
-                children: [
-                  Expanded(
-                    child: MaterialButton(
-                      elevation: 5,
-                      color: Colors.blue,
-                      textColor: Colors.white,
-                      splashColor: Colors.deepPurpleAccent,
-//              padding: EdgeInsets.all(15),
-                      child: Text(
-                        'encode)',
-                        style: TextStyle(fontSize: 12),
-                      ),
-                      onPressed: () {
-                        morseEncode();
-                      },
-                    ),
-                  ),
-                  SizedBox(width: 30),
-                  Expanded(
-                    child: MaterialButton(
-                      elevation: 5,
-                      color: Colors.blue,
-                      textColor: Colors.white,
-                      splashColor: Colors.deepPurpleAccent,
-                      child: Text(
-                        'decode)',
-                        style: TextStyle(fontSize: 12),
-                      ),
-                      onPressed: () {
-                        morseDecode();
-                      },
-                    ),
-                  ),
-
-                ],
-              )
             ],
           ),
-        ),);
-  }
-
-  ///摩尔斯电码输入框
-  Widget _inputWidget() {
-    return Container(
-      width: MediaQuery.of(context).size.width,
-      height: MediaQuery.of(context).size.height,
-      margin: EdgeInsets.only(bottom: 20),
-      child: TextField(
-        minLines: 100,
-//        autofocus: true,
-        controller: inputController,
-        maxLines: null,
-        textInputAction: TextInputAction.done,
-        decoration: InputDecoration(
-            border: OutlineInputBorder(), hintText: '请输入摩尔斯电码/中文'),
-      ),
-    );
-  }
-
-  ///编码/解码功能按钮
-  Widget _decodeBtnWidget() {
-    return Container(
-      width: 100,
-      height: 60,
-      margin: EdgeInsets.only(left: 30, right: 30),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: <Widget>[
-          Expanded(
-            child: MaterialButton(
-              elevation: 5,
-              color: Colors.blue,
-              textColor: Colors.white,
-              splashColor: Colors.deepPurpleAccent,
-//              padding: EdgeInsets.all(15),
-              child: Text(
-                'encode)',
-                style: TextStyle(fontSize: 12),
-              ),
-              onPressed: () {
-                morseEncode();
-              },
-            ),
-          ),
-          SizedBox(width: 30),
-          Expanded(
-            child: MaterialButton(
-              elevation: 5,
-              color: Colors.blue,
-              textColor: Colors.white,
-              splashColor: Colors.deepPurpleAccent,
-              child: Text(
-                'decode)',
-                style: TextStyle(fontSize: 12),
-              ),
-              onPressed: () {
-                morseDecode();
-              },
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-
-  ///在线编码/解码按钮
-  Widget _netMorseBtnWidget() {
-    return Container(
-      width: 100,
-      height: 60,
-      margin: EdgeInsets.only(top: 10, left: 30, right: 30, bottom: 10),
-      child: RaisedButton(
-        elevation: 5,
-        color: Colors.blue,
-        textColor: Colors.white,
-        splashColor: Colors.deepPurpleAccent,
-        child: Text(
-          '使用网络morse编/解码',
-          style: TextStyle(fontSize: 12),
         ),
-        onPressed: _launchURL,
-      ),
     );
   }
 
-  _launchURL() async {
-    const url = 'https://tool.lu/morse';
-    if (await canLaunch(url)) {
-      await launch(url);
-    } else {
-      throw 'Could not launch $url';
-    }
-  }
-
-  ///摩尔斯解码
   void morseDecode() {
     String decodeString = inputController.text;
     if ('' == decodeString) {
@@ -286,4 +159,6 @@ class _ScanScreenState extends State<ScanScreen> {
       inputController.text = '';
     }
   }
+
 }
+
