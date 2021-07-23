@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:yeah/Theme/constants.dart';
+import 'package:yeah/learn/learn_screen.dart';
 import 'package:yeah/scanner/scan_screen.dart';
 import 'package:yeah/widgets/layout_widgets.dart';
 import 'package:yeah/widgets/text_widgets.dart';
@@ -25,10 +26,7 @@ class _HomeScreenState extends State<HomeScreen> {
       style: optionStyle,
     ),
     ScanScreen(),
-    Text(
-      'Learn',
-      style: optionStyle,
-    ),
+    LearnScreen(),
   ];
 
   @override

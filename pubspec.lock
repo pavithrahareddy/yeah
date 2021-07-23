@@ -186,7 +186,7 @@ packages:
     description:
       path: "."
       ref: master
-      resolved-ref: "2f557293f0da733347249cba7da514a99938fc2a"
+      resolved-ref: "65b1d9c997dba1d9c6fbc761c919908fc79d6bb9"
       url: "https://github.com/pavithrahareddy/flutter_morse_util"
     source: git
     version: "0.0.2"
