@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:sizer/sizer.dart';
 
 final backgroundTheme = Container(
   height: double.infinity,
@@ -66,3 +68,8 @@ const inputBoxDecoration = BoxDecoration(
   borderRadius: BorderRadius.all(Radius.circular(30)),
   color: Color(0xFFFFFFFF),
 );
+
+final subHeadingStyle = GoogleFonts.overlock(
+    fontSize: 12.sp,
+    color: Color(0xFFD70988),
+    fontWeight: FontWeight.w600);

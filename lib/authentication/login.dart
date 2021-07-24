@@ -3,6 +3,7 @@ import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:yeah/Theme/constants.dart';
 import 'package:sizer/sizer.dart';
 import 'package:yeah/authentication/register.dart';
+import 'package:yeah/home/home_screen.dart';
 import 'package:yeah/widgets/button_widgets.dart';
 import 'package:yeah/widgets/input_widgets.dart';
 import 'package:yeah/widgets/text_widgets.dart';
@@ -117,7 +118,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                   email: _email.text, password: _password.text);
                               if (user != null) {
                                 loadingState();
-                                // Navigator.pushNamed(context, ChatScreen.id);
+                                Navigator.pushNamed(context, HomeScreen.id);
                               }
                             } on FirebaseAuthException catch (e) {
                               loadingState();

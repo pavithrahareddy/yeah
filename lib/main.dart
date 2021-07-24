@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:yeah/authentication/land.dart';
 import 'package:yeah/authentication/login.dart';
@@ -21,7 +22,7 @@ class MyApp extends StatelessWidget {
         builder: (context, orientation, deviceType){
           return MaterialApp(
             debugShowCheckedModeBanner: false,
-            initialRoute: HomeScreen.id,
+            initialRoute: FirebaseAuth.instance.currentUser == null? LandScreen.id : HomeScreen.id,
             theme: ThemeData(
               primaryColor: Color(0xFFEC0DCE),
             ),
