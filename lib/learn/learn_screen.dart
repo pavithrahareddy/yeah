@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_morse_util/morse_util.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:yeah/Theme/constants.dart';
 import 'package:sizer/sizer.dart';
 import 'package:yeah/widgets/text_widgets.dart';

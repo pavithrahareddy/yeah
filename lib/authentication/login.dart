@@ -36,7 +36,6 @@ class _LoginScreenState extends State<LoginScreen> {
     loading = false;
   }
 
-  @override
   Future<void> resetPassword(String email) async {
     await _auth.sendPasswordResetEmail(email: email);
   }

@@ -6,7 +6,6 @@ import 'package:sizer/sizer.dart';
 import 'package:yeah/Theme/constants.dart';
 import 'package:yeah/widgets/button_widgets.dart';
 import 'package:flutter_mobile_vision_2/flutter_mobile_vision_2.dart';
-import 'package:yeah/widgets/text_widgets.dart';
 
 class ScanScreen extends StatefulWidget {
   static const String id = 'scan_screen';
