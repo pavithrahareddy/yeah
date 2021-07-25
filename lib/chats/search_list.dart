@@ -14,6 +14,9 @@ class SearchList extends StatefulWidget {
 
 class _SearchListState extends State<SearchList> {
   var user = FirebaseAuth.instance.currentUser;
+
+  final _fireStore = FirebaseFirestore.instance;
+  String currentUserName = "";
   List searchList = [];
   TextEditingController search = new TextEditingController();
   bool load = false;
@@ -35,12 +38,29 @@ class _SearchListState extends State<SearchList> {
           .get();
       for (int i = 0; i < searchedUsers.docs.length; i++) {
         var user = searchedUsers.docs[i];
-        searchList.add([user['username'],user['name']]);
+        if(currentUserName!=user['username'] ){
+          searchList.add([user['username'],user['name']]);
+        }
       }
       print(searchList);
       loading();
     }
   }
+
+
+  message(String userName) async {
+    await _fireStore
+        .collection('usermessages')
+        .doc(userName+"_"+currentUserName)
+        .set({
+      'user1': userName,
+      'user2': currentUserName,
+    });
+
+    // Add Navigator Here
+  }
+
+
 
 
   // sendMessage(String userName){
@@ -93,7 +113,7 @@ class _SearchListState extends State<SearchList> {
             Spacer(),
             GestureDetector(
               onTap: () {
-                // sendMessage(userName);
+                message(userName);
               },
               child: Container(
                 padding: EdgeInsets.symmetric(horizontal: 12, vertical: 8),
@@ -125,6 +145,7 @@ class _SearchListState extends State<SearchList> {
 
   @override
   void initState() {
+    currentUserName = user!.displayName!;
     super.initState();
   }
 

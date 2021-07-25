@@ -103,10 +103,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
             Padding(
               padding: EdgeInsets.only(top: 2.h),
               child: Container(
-                height: 85.h,
+                height: 90.h,
                 width: 80.w,
                 padding: EdgeInsets.only(
-                    top: 3.w, right: 5.w, left: 5.w, bottom: 3.w),
+                    top: 7.w, right: 5.w, left: 5.w, bottom: 3.w),
                 decoration: BoxDecoration(
                     color: Colors.white.withOpacity(0.3),
                     borderRadius: BorderRadius.all(Radius.circular(30))),
@@ -227,10 +227,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                     content: Text(
                                         "Email Verification Link Sent To Mail!"),
                                   );
-                                  print(_name.text);
-                                  print(_username.text);
-                                  print(_email.text);
-                                  print(_password.text);
                                   newUser.user!
                                       .updateDisplayName(_username.text);
                                   await _fireStore
