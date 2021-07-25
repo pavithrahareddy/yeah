@@ -179,9 +179,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             controller: _username,
                             validator: (value) {
                               if (value!.isEmpty) {
-                                return "Username is Required";
+                                return "            Username is Required";
                               } else if (taken) {
-                                return "Username is already taken";
+                                return "            Username is already taken";
                               } else {
                                 return null;
                               }

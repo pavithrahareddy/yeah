@@ -28,17 +28,17 @@ class _SearchListState extends State<SearchList> {
     });
   }
 
-  searchUsername() async {
+  searchName() async {
     if (search.text.isNotEmpty) {
       loading();
       searchList.clear();
       QuerySnapshot searchedUsers = await FirebaseFirestore.instance
           .collection("users")
-          .where('username', isEqualTo: search.text)
+          .where('name', isEqualTo: search.text,)
           .get();
       for (int i = 0; i < searchedUsers.docs.length; i++) {
         var user = searchedUsers.docs[i];
-        if(currentUserName!=user['username'] ){
+        if(currentUserName!=user['username']){
           searchList.add([user['username'],user['name']]);
         }
       }
@@ -60,28 +60,6 @@ class _SearchListState extends State<SearchList> {
     // Add Navigator Here
   }
 
-
-
-
-  // sendMessage(String userName){
-  //   List<String> users = [Constants.myName,userName];
-  //
-  //   String chatRoomId = getChatRoomId(Constants.myName,userName);
-  //
-  //   Map<String, dynamic> chatRoom = {
-  //     "users": users,
-  //     "chatRoomId" : chatRoomId,
-  //   };
-  //
-  //   databaseMethods.addChatRoom(chatRoom, chatRoomId);
-  //
-  //   Navigator.push(context, MaterialPageRoute(
-  //       builder: (context) => Chat(
-  //         chatRoomId: chatRoomId,
-  //       )
-  //   ));
-  //
-  // }
 
   Widget userCard(String userName,String displayName) {
     return Card(
@@ -189,7 +167,7 @@ class _SearchListState extends State<SearchList> {
                 ),
                 GestureDetector(
                   onTap: () {
-                    searchUsername();
+                    searchName();
                   },
                   child: Icon(
                     Icons.person_search_outlined,
