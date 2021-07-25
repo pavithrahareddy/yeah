@@ -24,8 +24,8 @@ final lightBackgroundTheme = LinearGradient(
   begin: Alignment.topCenter,
   end: Alignment.bottomCenter,
   colors: [
-    Color(0xFF0C5DD7).withOpacity(0.8),
-    Color(0xFFEC0DCE).withOpacity(0.8),
+     Color(0xFF0C5DD7).withOpacity(0.8),
+     Color(0xFFEC0DCE).withOpacity(0.8),
   ],
 );
 
@@ -73,3 +73,4 @@ final subHeadingStyle = GoogleFonts.overlock(
     fontSize: 12.sp,
     color: Color(0xFFD70988),
     fontWeight: FontWeight.w600);
+

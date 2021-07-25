@@ -5,6 +5,7 @@ import 'package:yeah/authentication/login.dart';
 import 'package:yeah/authentication/register.dart';
 import 'package:sizer/sizer.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:yeah/chats/chat_list.dart';
 import 'package:yeah/home/home_screen.dart';
 import 'package:yeah/learn/learn_screen.dart';
 import 'package:yeah/scanner/scan_screen.dart';
@@ -33,6 +34,7 @@ class MyApp extends StatelessWidget {
               HomeScreen.id: (context) => HomeScreen(),
               ScanScreen.id: (context) => ScanScreen(),
               LearnScreen.id: (context) => LearnScreen(),
+              ChatList.id: (context) => ChatList(),
             },
           );
         }
