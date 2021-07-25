@@ -43,10 +43,13 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
   bool _passwordVisible = false;
   bool loading = false;
+  bool availabilityIndicator = false;
+  bool taken = false;
 
   @override
   void initState() {
     _passwordVisible = false;
+    getUserNames();
     loading = false;
     super.initState();
   }
@@ -63,15 +66,25 @@ class _RegisterScreenState extends State<RegisterScreen> {
     });
   }
 
-  getUserNames () async {
-    QuerySnapshot getUsers = await FirebaseFirestore.instance
-        .collection("users").get();
+  getUserNames() async {
+    QuerySnapshot getUsers =
+        await FirebaseFirestore.instance.collection("users").get();
     for (int i = 0; i < getUsers.docs.length; i++) {
       var user = getUsers.docs[i];
-      allUsers.add(user['name']);
-      print(user['name']);
+      allUsers.add(user['username']);
+      print(user['username']);
     }
+    print(allUsers);
+  }
 
+  bool availabilty(String username) {
+    if (allUsers.contains(username)) {
+      print("taken");
+      return true;
+    } else {
+      print("not taken");
+      return false;
+    }
   }
 
   @override
@@ -93,7 +106,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 height: 85.h,
                 width: 80.w,
                 padding: EdgeInsets.only(
-                    top: 10.w, right: 5.w, left: 5.w, bottom: 5.w),
+                    top: 3.w, right: 5.w, left: 5.w, bottom: 3.w),
                 decoration: BoxDecoration(
                     color: Colors.white.withOpacity(0.3),
                     borderRadius: BorderRadius.all(Radius.circular(30))),
@@ -104,13 +117,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       crossAxisAlignment: CrossAxisAlignment.stretch,
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
-                        GestureDetector(
-                          onTap: (){
-                            getUserNames();
-                          },
-                            child: Logo()),
+                        Logo(),
                         SizedBox(
-                          height: 3.h,
+                          height: 2.h,
                         ),
                         H4Heading(text: "Enter Details To Sign Up"),
                         SizedBox(
@@ -125,11 +134,59 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         SizedBox(
                           height: 3.h,
                         ),
-                        InputDetails(
-                          name: _username,
-                          icon: Icons.person,
-                          hint: "Enter Your Username",
-                          multiValidator: requiredValidator,
+                        Container(
+                          padding: EdgeInsets.all(5),
+                          decoration: inputBoxDecoration,
+                          child: TextFormField(
+                            autovalidateMode:
+                                AutovalidateMode.onUserInteraction,
+                            onFieldSubmitted: (value) {},
+                            style: TextStyle(
+                              color: Color(
+                                  0xFFEA02B1), //TextFormField title background color change
+                            ),
+                            keyboardType: TextInputType.emailAddress,
+                            decoration: textInputDecoration.copyWith(
+                              suffixIcon: availabilityIndicator
+                                  ? Transform.scale(
+                                      scale: 0.5,
+                                      child: SizedBox(
+                                        child: CircularProgressIndicator(
+                                          color: Color(0xFFE50277),
+                                        ),
+                                        height: 10,
+                                        width: 10,
+                                      ),
+                                    )
+                                  : SizedBox(),
+                              hintText: "Enter Unique Username",
+                              prefixIcon: Icon(
+                                Icons.person,
+                                color: Color(0xFFE50277),
+                              ),
+                            ),
+                            onChanged: (value) {
+                              setState(() {
+                                availabilityIndicator = true;
+                              });
+                              if (value != null) {
+                                setState(() {
+                                  taken = availabilty(value);
+                                  availabilityIndicator = false;
+                                });
+                              }
+                            },
+                            controller: _username,
+                            validator: (value) {
+                              if (value!.isEmpty) {
+                                return "Username is Required";
+                              } else if (taken) {
+                                return "Username is already taken";
+                              } else {
+                                return null;
+                              }
+                            },
+                          ),
                         ),
                         SizedBox(
                           height: 3.h,
@@ -174,14 +231,15 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                   print(_username.text);
                                   print(_email.text);
                                   print(_password.text);
-                                  newUser.user!.updateDisplayName(_username.text);
+                                  newUser.user!
+                                      .updateDisplayName(_username.text);
                                   await _fireStore
                                       .collection('users')
                                       .doc(newUser.user!.uid)
                                       .set({
                                     'name': _name.text,
                                     'email': _email.text,
-                                    'username' : _username.text,
+                                    'username': _username.text,
                                   });
                                   loadingState();
                                   Navigator.popAndPushNamed(
