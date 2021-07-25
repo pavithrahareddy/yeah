@@ -23,9 +23,12 @@ class _RegisterScreenState extends State<RegisterScreen> {
   final _fireStore = FirebaseFirestore.instance;
 
   TextEditingController _name = TextEditingController();
+  TextEditingController _username = TextEditingController();
   TextEditingController _email = TextEditingController();
   TextEditingController _password = TextEditingController();
   TextEditingController _confirmPassword = TextEditingController();
+
+  List allUsers = [];
 
   final _formKey = GlobalKey<FormState>();
 
@@ -60,12 +63,25 @@ class _RegisterScreenState extends State<RegisterScreen> {
     });
   }
 
+  getUserNames () async {
+    QuerySnapshot getUsers = await FirebaseFirestore.instance
+        .collection("users").get();
+    for (int i = 0; i < getUsers.docs.length; i++) {
+      var user = getUsers.docs[i];
+      allUsers.add(user['name']);
+      print(user['name']);
+    }
+
+  }
+
   @override
   Widget build(BuildContext context) {
     return ModalProgressHUD(
       inAsyncCall: loading,
       opacity: 0.5,
-      progressIndicator: CircularProgressIndicator(color: Color(0xFF4C2AE3),),
+      progressIndicator: CircularProgressIndicator(
+        color: Color(0xFF4C2AE3),
+      ),
       child: Scaffold(
         body: Stack(
           alignment: Alignment.center,
@@ -88,7 +104,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       crossAxisAlignment: CrossAxisAlignment.stretch,
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
-                        Logo(),
+                        GestureDetector(
+                          onTap: (){
+                            getUserNames();
+                          },
+                            child: Logo()),
                         SizedBox(
                           height: 3.h,
                         ),
@@ -99,7 +119,16 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         InputDetails(
                           name: _name,
                           icon: Icons.person,
-                          hint: "Enter Your Name",
+                          hint: "Enter Your Display Name",
+                          multiValidator: requiredValidator,
+                        ),
+                        SizedBox(
+                          height: 3.h,
+                        ),
+                        InputDetails(
+                          name: _username,
+                          icon: Icons.person,
+                          hint: "Enter Your Username",
                           multiValidator: requiredValidator,
                         ),
                         SizedBox(
@@ -114,7 +143,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         SizedBox(
                           height: 3.h,
                         ),
-                        password(_password, _passwordVisible, passwordVisibility, true),
+                        password(_password, _passwordVisible,
+                            passwordVisibility, true),
                         SizedBox(
                           height: 3.h,
                         ),
@@ -131,8 +161,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                 loadingState();
                                 try {
                                   // returns a Future
-                                  final newUser =
-                                      await _auth.createUserWithEmailAndPassword(
+                                  final newUser = await _auth
+                                      .createUserWithEmailAndPassword(
                                           email: _email.text,
                                           password: _password.text);
                                   await newUser.user!.sendEmailVerification();
@@ -140,15 +170,22 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                     content: Text(
                                         "Email Verification Link Sent To Mail!"),
                                   );
+                                  print(_name.text);
+                                  print(_username.text);
+                                  print(_email.text);
+                                  print(_password.text);
+                                  newUser.user!.updateDisplayName(_username.text);
                                   await _fireStore
                                       .collection('users')
                                       .doc(newUser.user!.uid)
                                       .set({
                                     'name': _name.text,
                                     'email': _email.text,
+                                    'username' : _username.text,
                                   });
                                   loadingState();
-                                  Navigator.popAndPushNamed(context, LoginScreen.id);
+                                  Navigator.popAndPushNamed(
+                                      context, LoginScreen.id);
                                 } catch (e) {
                                   loadingState();
                                   print(e);

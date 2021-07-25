@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:yeah/Theme/constants.dart';
@@ -115,6 +116,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             try {
                               final user = await _auth.signInWithEmailAndPassword(
                                   email: _email.text, password: _password.text);
+
                               if (user != null) {
                                 loadingState();
                                 Navigator.pushNamed(context, HomeScreen.id);

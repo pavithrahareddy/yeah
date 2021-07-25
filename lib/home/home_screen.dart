@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:yeah/Theme/constants.dart';
 import 'package:yeah/authentication/login.dart';
-import 'package:yeah/chats/chat_list.dart';
+import 'package:yeah/chats/search_list.dart';
 import 'package:yeah/learn/learn_screen.dart';
 import 'package:yeah/scanner/scan_screen.dart';
 import 'package:yeah/widgets/text_widgets.dart';
@@ -23,7 +23,7 @@ class _HomeScreenState extends State<HomeScreen> {
   static const TextStyle optionStyle =
   TextStyle(fontSize: 30, fontWeight: FontWeight.w600);
   static List<Widget> _widgetOptions = <Widget>[
-    ChatList(),
+    SearchList(),
     ScanScreen(),
     LearnScreen(),
   ];
