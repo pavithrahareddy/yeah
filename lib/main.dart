@@ -36,7 +36,7 @@ class MyApp extends StatelessWidget {
               ScanScreen.id: (context) => ScanScreen(),
               LearnScreen.id: (context) => LearnScreen(),
               SearchList.id: (context) => SearchList(),
-              ChatScreen.id: (context) => ChatScreen("","","")
+              ChatScreen.id: (context) => ChatScreen("","","","")
             },
           );
         }

@@ -68,7 +68,7 @@ class _SearchListState extends State<SearchList> {
 
     // Add Navigator Here
     Navigator.push(context, MaterialPageRoute(
-        builder: (context) => ChatScreen(userName,currentUserName,displayName)));
+        builder: (context) => ChatScreen(userName,currentUserName,displayName,docId)));
   }
 
 
