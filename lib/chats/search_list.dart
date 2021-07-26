@@ -48,11 +48,19 @@ class _SearchListState extends State<SearchList> {
     }
   }
 
+  String createChatId(String userName,String currentUserName){
+    if (userName.substring(0, 1).codeUnitAt(0) > currentUserName.substring(0, 1).codeUnitAt(0)) {
+      return "$currentUserName\_$userName";
+    } else {
+      return "$userName\_$currentUserName";
+    }
+  }
 
   message(String userName, String displayName) async {
+    String docId = createChatId(userName, currentUserName);
     await _fireStore
-        .collection('usermessages')
-        .doc(userName+"_"+currentUserName)
+        .collection('chats')
+        .doc(docId)
         .set({
       'user1': userName,
       'user2': currentUserName,
