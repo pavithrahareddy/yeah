@@ -35,9 +35,6 @@ class _ChatRoomsState extends State<ChatRooms> {
               );
             }
             List<dynamic> chatRooms = snapshot.data!['chats'];
-            for(int i = 0; i<chatRooms.length;i++){
-              print(chatRooms[i]['displayName']);
-            }
             return ListView.builder(itemCount:chatRooms.length,itemBuilder: (BuildContext context, int index){
               return Card(
                 color: Color(0xFFCFE0F8),
