@@ -79,7 +79,6 @@ class _ChatScreenState extends State<ChatScreen> {
                     ),
                     TextButton(
                       onPressed: () {
-
                       },
                       child: Icon(Icons.send,color: Color(0xFFEC0DCE),)
                     ),
@@ -93,3 +92,4 @@ class _ChatScreenState extends State<ChatScreen> {
     );
   }
 }
+
