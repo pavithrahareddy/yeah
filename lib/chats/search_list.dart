@@ -65,7 +65,7 @@ class _SearchListState extends State<SearchList> {
       'user1': userName,
       'user2': currentUserName,
     });
-
+    await _fireStore.collection('users').doc(user!.uid).update({'chats' : FieldValue.arrayUnion([{'userName':userName,'displayName':displayName,'chatId':docId}])});
     // Add Navigator Here
     Navigator.push(context, MaterialPageRoute(
         builder: (context) => ChatScreen(userName,currentUserName,displayName,docId)));
@@ -122,14 +122,6 @@ class _SearchListState extends State<SearchList> {
         ),
       ),
     );
-  }
-
-  getChatRoomId(String a, String b) {
-    if (a.substring(0, 1).codeUnitAt(0) > b.substring(0, 1).codeUnitAt(0)) {
-      return "$b\_$a";
-    } else {
-      return "$a\_$b";
-    }
   }
 
   @override

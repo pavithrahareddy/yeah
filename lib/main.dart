@@ -6,6 +6,7 @@ import 'package:yeah/authentication/register.dart';
 import 'package:sizer/sizer.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:yeah/chats/chat_screen.dart';
+import 'package:yeah/chats/chatrooms.dart';
 import 'package:yeah/chats/search_list.dart';
 import 'package:yeah/home/home_screen.dart';
 import 'package:yeah/learn/learn_screen.dart';
@@ -36,7 +37,8 @@ class MyApp extends StatelessWidget {
               ScanScreen.id: (context) => ScanScreen(),
               LearnScreen.id: (context) => LearnScreen(),
               SearchList.id: (context) => SearchList(),
-              ChatScreen.id: (context) => ChatScreen("","","","")
+              ChatScreen.id: (context) => ChatScreen("","","",""),
+              ChatRooms.id: (context) => ChatRooms()
             },
           );
         }
