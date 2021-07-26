@@ -4,6 +4,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:yeah/Theme/constants.dart';
 import 'package:sizer/sizer.dart';
+import 'package:yeah/chats/chat_screen.dart';
 
 class SearchList extends StatefulWidget {
   static const String id = 'search_list';
@@ -48,7 +49,7 @@ class _SearchListState extends State<SearchList> {
   }
 
 
-  message(String userName) async {
+  message(String userName, String displayName) async {
     await _fireStore
         .collection('usermessages')
         .doc(userName+"_"+currentUserName)
@@ -58,6 +59,8 @@ class _SearchListState extends State<SearchList> {
     });
 
     // Add Navigator Here
+    Navigator.push(context, MaterialPageRoute(
+        builder: (context) => ChatScreen(userName,currentUserName,displayName)));
   }
 
 
@@ -91,7 +94,7 @@ class _SearchListState extends State<SearchList> {
             Spacer(),
             GestureDetector(
               onTap: () {
-                message(userName);
+                message(userName, displayName);
               },
               child: Container(
                 padding: EdgeInsets.symmetric(horizontal: 12, vertical: 8),
