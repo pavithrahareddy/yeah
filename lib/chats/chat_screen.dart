@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_morse_util/morse_util.dart';
 import 'package:yeah/Theme/constants.dart';
 import 'package:yeah/widgets/text_widgets.dart';
 
@@ -32,6 +33,7 @@ class _ChatScreenState extends State<ChatScreen> {
         'time': DateTime
             .now()
             .millisecondsSinceEpoch,
+        'clock': (DateTime.now().hour).toString()+":"+(DateTime.now().minute).toString(),
       };
       await FirebaseFirestore.instance.collection("chats")
           .doc(chatId)
@@ -130,9 +132,11 @@ class MessagesStream extends StatelessWidget {
           .snapshots(),
       builder: (context, snapshot) {
         if (!snapshot.hasData) {
-          return Center(
-            child: CircularProgressIndicator(
-              backgroundColor: Color(0xFFD70988),
+          return Expanded(
+            child: Center(
+              child: CircularProgressIndicator(
+                backgroundColor: Color(0xFFD70988),
+              ),
             ),
           );
         }
@@ -141,12 +145,14 @@ class MessagesStream extends StatelessWidget {
         for (var message in messages) {
           final messageText = message["message"];
           final messageSender = message['from'];
+          final clock = message['clock'];
 
           final currentUser = me;
 
           final messageBubble = MessageBubble(
             text: messageText,
             isMe: currentUser == messageSender,
+            clock: clock,
           );
 
           messageBubbles.add(messageBubble);
@@ -164,11 +170,13 @@ class MessagesStream extends StatelessWidget {
 }
 
 class MessageBubble extends StatelessWidget {
-  MessageBubble({ required this.text, required this.isMe});
+  MessageBubble({ required this.text, required this.isMe, required this.clock});
 
   final String text;
   final bool isMe;
-  // final String clock;
+  final String clock;
+  MorseUtil _morseUtil = MorseUtil();
+
 
   @override
   Widget build(BuildContext context) {
@@ -194,7 +202,7 @@ class MessageBubble extends StatelessWidget {
             child: Padding(
               padding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
               child: Text(
-                text,
+                _morseUtil.encode(text),
                 style: TextStyle(
                   color: Colors.black,
                   fontSize: 16.0,
@@ -202,16 +210,16 @@ class MessageBubble extends StatelessWidget {
               ),
             ),
           ),
-          // Padding(
-          //   padding: EdgeInsets.symmetric(vertical: 5,horizontal: 2),
-          //   child: Text(
-          //     clock,
-          //     style: TextStyle(
-          //       fontSize: 13.0,
-          //       color: Colors.green,
-          //     ),
-          //   ),
-          // ),
+          Padding(
+            padding: EdgeInsets.symmetric(vertical: 5,horizontal: 2),
+            child: Text(
+              clock,
+              style: TextStyle(
+                fontSize: 13.0,
+                color: Colors.black,
+              ),
+            ),
+          ),
         ],
       ),
     );
